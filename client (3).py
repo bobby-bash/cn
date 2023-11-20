@@ -1,0 +1,12 @@
+import socket
+UDPClientSocket = socket.socket(family=socket.AF_INET,type=socket.SOCK_DGRAM)
+message=(input("enter here:"))
+print(message)
+UDPClientSocket.sendto(message.encode(),("127.0.0.1",3377))
+modifiedmsg,serveraddress=UDPClientSocket.recvfrom(2048)
+msg=modifiedmsg.decode()
+l1=msg.split(" ")
+print("int:   ",l1[0])
+print("octal: ",l1[1])
+print("hexa:  ",l1[2])
+UDPClientSocket.close()

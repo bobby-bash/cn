@@ -1,0 +1,17 @@
+import socket
+import sys
+server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server_address=('localhost',10000)
+server.bind(server_address)
+server.listen(1)
+print("Waiting for a connection")
+connection,client_address=server.accept()
+print("Connection established:",client_address)
+data=connection.recv(1000)
+while data and data!="bye":
+    print("Received:",data.decode())
+    data1=input("enter message:")
+    connection.sendall(data1.encode())
+    data=connection.recv(1000)
+connection.close()
+server.close()
